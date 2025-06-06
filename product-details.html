@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - BIHAR BITES</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+            --dark-color: #2d3436;
+            --light-color: #f9f9f9;
+        }
+
+        body {
+            background-color: var(--light-color);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: white;
+            padding: 1rem 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Product Details Section */
+        .product-details {
+            padding: 120px 5% 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .product-gallery {
+            position: relative;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .product-title {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: var(--dark-color);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .product-meta {
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .meta-item i {
+            color: var(--primary-color);
+            margin-right: 1rem;
+            width: 24px;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--light-color);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .quantity-input {
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #eee;
+            margin: 0 1rem;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .buy-now-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .buy-now-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Product Details Tabs */
+        .product-tabs {
+            padding: 2rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .tab-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Related Products */
+        .related-products {
+            padding: 4rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .related-products h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--dark-color);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .product-details {
+                grid-template-columns: 1fr;
+                padding-top: 100px;
+            }
+
+            .main-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">BIHAR BITES</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#products">Products</a>
+                <a href="index.html#cart">Cart</a>
+                <a href="contact.html">Contact</a>
+                <a href="#login">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="product-details">
+        <div class="product-gallery">
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Stylish T-Shirt" class="main-image" id="mainImage">
+            <div class="thumbnail-container">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Thumbnail 1" class="thumbnail" onclick="changeImage(this.src)">
+                <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Thumbnail 2" class="thumbnail" onclick="changeImage(this.src)">
+                <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Thumbnail 3" class="thumbnail" onclick="changeImage(this.src)">
+            </div>
+        </div>
+
+        <div class="product-info">
+            <h1 class="product-title">Stylish T-Shirt</h1>
+            <p class="product-price">₹499</p>
+            <p class="product-description">
+                Premium quality cotton t-shirt with a modern fit. Perfect for casual wear and everyday comfort.
+            </p>
+            <div class="product-meta">
+                <div class="meta-item">
+                    <i class="fas fa-truck"></i>
+                    <span>Free Delivery within 3-5 business days</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-undo"></i>
+                    <span>7 Days Easy Returns</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>100% Authentic Products</span>
+                </div>
+            </div>
+            <div class="quantity-selector">
+                <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                <input type="number" class="quantity-input" value="1" min="1" id="quantity">
+                <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+            </div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-now-btn">Buy Now</button>
+        </div>
+    </section>
+
+    <section class="product-tabs">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('description')">Description</button>
+            <button class="tab-btn" onclick="openTab('specifications')">Specifications</button>
+            <button class="tab-btn" onclick="openTab('reviews')">Reviews</button>
+        </div>
+
+        <div id="description" class="tab-content active">
+            <h3>Product Description</h3>
+            <p>Premium quality cotton t-shirt with a modern fit. Made from 100% organic cotton, this t-shirt offers exceptional comfort and durability. Perfect for casual wear and everyday use.</p>
+            <ul>
+                <li>100% Organic Cotton</li>
+                <li>Regular Fit</li>
+                <li>Machine Washable</li>
+                <li>Available in multiple colors</li>
+            </ul>
+        </div>
+
+        <div id="specifications" class="tab-content">
+            <h3>Product Specifications</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">Material</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">100% Organic Cotton</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">Fit</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">Regular</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">Care Instructions</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">Machine wash cold</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">Sizes Available</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #eee;">S, M, L, XL, XXL</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="reviews" class="tab-content">
+            <h3>Customer Reviews</h3>
+            <div class="review">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <div style="color: gold;">★★★★★</div>
+                    <span style="margin-left: 1rem; font-weight: 500;">John Doe</span>
+                </div>
+                <p>Great quality t-shirt! The fabric is soft and comfortable. Perfect fit and fast delivery.</p>
+            </div>
+            <div class="review">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <div style="color: gold;">★★★★☆</div>
+                    <span style="margin-left: 1rem; font-weight: 500;">Jane Smith</span>
+                </div>
+                <p>Good product, but the color was slightly different from the picture. Otherwise, great quality!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="related-products">
+        <h2>You May Also Like</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Comfy Hoodie" class="product-image">
+                <div class="product-info">
+                    <h3>Comfy Hoodie</h3>
+                    <p class="product-price">₹899</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Cool Cap" class="product-image">
+                <div class="product-info">
+                    <h3>Cool Cap</h3>
+                    <p class="product-price">₹299</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 BIHAR BITES. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Image Gallery
+        function changeImage(src) {
+            document.getElementById('mainImage').src = src;
+        }
+
+        // Quantity Selector
+        function increaseQuantity() {
+            const input = document.getElementById('quantity');
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function decreaseQuantity() {
+            const input = document.getElementById('quantity');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+
+        // Tabs
+        function openTab(tabName) {
+            const tabContents = document.getElementsByClassName('tab-content');
+            const tabButtons = document.getElementsByClassName('tab-btn');
+
+            for (let content of tabContents) {
+                content.classList.remove('active');
+            }
+
+            for (let button of tabButtons) {
+                button.classList.remove('active');
+            }
+
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Add to Cart
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                alert('Product added to cart!');
+            });
+        });
+
+        // Buy Now
+        document.querySelector('.buy-now-btn').addEventListener('click', () => {
+            alert('Proceeding to checkout...');
+        });
+    </script>
+</body>
+</html> 
