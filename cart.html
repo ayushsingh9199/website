@@ -4,16 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart - BIHAR BITES</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
         :root {
             --primary-color: #ff6b6b;
             --secondary-color: #4ecdc4;
@@ -21,23 +13,29 @@
             --light-color: #f9f9f9;
         }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         body {
             background-color: var(--light-color);
-            padding-top: 80px;
         }
 
         /* Navigation */
-        nav {
+        .navbar {
             background-color: white;
             padding: 1rem 5%;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .nav-container {
+        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -47,7 +45,7 @@
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 600;
             color: var(--primary-color);
             text-decoration: none;
         }
@@ -64,10 +62,29 @@
             transition: color 0.3s ease;
         }
 
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .cart-link {
+            position: relative;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 50%;
+        }
+
         /* Cart Container */
         .cart-container {
             max-width: 1200px;
-            margin: 2rem auto;
+            margin: 100px auto 2rem;
             padding: 0 5%;
         }
 
@@ -75,6 +92,7 @@
             font-size: 2rem;
             color: var(--dark-color);
             margin-bottom: 2rem;
+            text-align: center;
         }
 
         .cart-grid {
@@ -86,9 +104,9 @@
         /* Cart Items */
         .cart-items {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .cart-item {
@@ -108,17 +126,24 @@
             width: 100px;
             height: 100px;
             object-fit: cover;
-            border-radius: 5px;
+            border-radius: 10px;
         }
 
         .item-details h3 {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            color: var(--dark-color);
             margin-bottom: 0.5rem;
         }
 
+        .item-details p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
         .item-price {
-            color: var(--primary-color);
             font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.2rem;
         }
 
         .quantity-controls {
@@ -128,17 +153,21 @@
         }
 
         .quantity-btn {
+            background: var(--light-color);
+            border: none;
             width: 30px;
             height: 30px;
-            border: 1px solid #ddd;
-            background: white;
             border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
         }
 
         .quantity-btn:hover {
-            background: var(--light-color);
+            background: #eee;
         }
 
         .quantity-input {
@@ -150,9 +179,9 @@
         }
 
         .remove-btn {
-            color: #ff4757;
             background: none;
             border: none;
+            color: #ff4757;
             cursor: pointer;
             font-size: 1.2rem;
             transition: color 0.3s ease;
@@ -165,16 +194,16 @@
         /* Cart Summary */
         .cart-summary {
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             height: fit-content;
         }
 
         .summary-title {
             font-size: 1.5rem;
-            margin-bottom: 1.5rem;
             color: var(--dark-color);
+            margin-bottom: 1.5rem;
         }
 
         .summary-item {
@@ -212,10 +241,10 @@
             background-color: #ff5252;
         }
 
-        /* Empty Cart */
         .empty-cart {
             text-align: center;
             padding: 3rem;
+            color: #666;
         }
 
         .empty-cart i {
@@ -224,15 +253,19 @@
             margin-bottom: 1rem;
         }
 
-        .empty-cart h2 {
-            color: var(--dark-color);
+        .empty-cart h3 {
+            font-size: 1.5rem;
             margin-bottom: 1rem;
+        }
+
+        .empty-cart p {
+            margin-bottom: 2rem;
         }
 
         .continue-shopping {
             display: inline-block;
-            padding: 1rem 2rem;
-            background-color: var(--secondary-color);
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -240,10 +273,9 @@
         }
 
         .continue-shopping:hover {
-            background-color: #3dbeb6;
+            background-color: #ff5252;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .cart-grid {
                 grid-template-columns: 1fr;
@@ -254,148 +286,147 @@
                 gap: 1rem;
             }
 
-            .item-price, .quantity-controls {
+            .item-price, .quantity-controls, .remove-btn {
                 grid-column: 2;
             }
 
+            .quantity-controls {
+                margin-top: 0.5rem;
+            }
+
             .remove-btn {
-                grid-column: 2;
-                justify-self: end;
+                margin-top: 0.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
+    <nav class="navbar">
+        <div class="nav-content">
             <a href="index.html" class="logo">BIHAR BITES</a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="index.html#products">Products</a>
-                <a href="cart.html">Cart</a>
+                <a href="cart.html" class="cart-link">
+                    Cart
+                    <span class="cart-badge" id="cart-count">0</span>
+                </a>
                 <a href="contact.html">Contact</a>
-                <a href="#login">Login</a>
+                <a href="login.html">Login</a>
             </div>
         </div>
     </nav>
 
     <div class="cart-container">
-        <h1 class="cart-title">Shopping Cart</h1>
+        <h1 class="cart-title">Your Cart</h1>
         <div class="cart-grid">
-            <div class="cart-items">
+            <div class="cart-items" id="cart-items">
                 <!-- Cart items will be dynamically added here -->
-                <div class="cart-item">
-                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Stylish T-Shirt" class="item-image">
-                    <div class="item-details">
-                        <h3>Stylish T-Shirt</h3>
-                        <p>Size: M | Color: Black</p>
-                    </div>
-                    <div class="item-price">₹499</div>
-                    <div class="quantity-controls">
-                        <button class="quantity-btn minus">-</button>
-                        <input type="number" class="quantity-input" value="1" min="1" max="10">
-                        <button class="quantity-btn plus">+</button>
-                    </div>
-                    <button class="remove-btn"><i class="fas fa-trash"></i></button>
-                </div>
             </div>
-
             <div class="cart-summary">
                 <h2 class="summary-title">Order Summary</h2>
                 <div class="summary-item">
                     <span>Subtotal</span>
-                    <span>₹499</span>
+                    <span id="subtotal">₹0</span>
                 </div>
                 <div class="summary-item">
-                    <span>Shipping</span>
-                    <span>₹50</span>
+                    <span>Delivery Fee</span>
+                    <span id="delivery-fee">₹40</span>
                 </div>
                 <div class="summary-item">
-                    <span>Tax</span>
-                    <span>₹55</span>
+                    <span>Tax (5%)</span>
+                    <span id="tax">₹0</span>
                 </div>
                 <div class="summary-total">
                     <span>Total</span>
-                    <span>₹604</span>
+                    <span id="total">₹0</span>
                 </div>
-                <button class="checkout-btn" onclick="window.location.href='checkout.html'">Proceed to Checkout</button>
+                <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Cart functionality
-        const quantityInputs = document.querySelectorAll('.quantity-input');
-        const minusButtons = document.querySelectorAll('.minus');
-        const plusButtons = document.querySelectorAll('.plus');
-        const removeButtons = document.querySelectorAll('.remove-btn');
+        // Initialize cart from localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        updateCartDisplay();
 
-        // Update quantity
-        function updateQuantity(input, change) {
-            let value = parseInt(input.value) + change;
-            if (value < 1) value = 1;
-            if (value > 10) value = 10;
-            input.value = value;
-            updateCart();
-        }
-
-        // Remove item
-        function removeItem(button) {
-            const cartItem = button.closest('.cart-item');
-            cartItem.remove();
-            updateCart();
-        }
-
-        // Update cart totals
-        function updateCart() {
-            let subtotal = 0;
-            const items = document.querySelectorAll('.cart-item');
+        function updateCartDisplay() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
             
-            items.forEach(item => {
-                const price = parseFloat(item.querySelector('.item-price').textContent.replace('₹', ''));
-                const quantity = parseInt(item.querySelector('.quantity-input').value);
-                subtotal += price * quantity;
-            });
+            // Update cart count
+            cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
 
-            const shipping = 50;
-            const tax = subtotal * 0.11; // 11% tax
-            const total = subtotal + shipping + tax;
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Looks like you haven't added any items to your cart yet.</p>
+                        <a href="index.html" class="continue-shopping">Continue Shopping</a>
+                    </div>
+                `;
+                return;
+            }
 
-            document.querySelector('.summary-item:nth-child(1) span:last-child').textContent = `₹${subtotal}`;
-            document.querySelector('.summary-item:nth-child(3) span:last-child').textContent = `₹${tax.toFixed(0)}`;
-            document.querySelector('.summary-total span:last-child').textContent = `₹${total.toFixed(0)}`;
+            cartItemsContainer.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}" class="item-image">
+                    <div class="item-details">
+                        <h3>${item.name}</h3>
+                        <p>${item.description || 'Delicious food item'}</p>
+                    </div>
+                    <div class="item-price">₹${item.price}</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                        <input type="number" class="quantity-input" value="${item.quantity}" 
+                               onchange="updateQuantity(${index}, this.value - item.quantity)">
+                        <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                    </div>
+                    <button class="remove-btn" onclick="removeItem(${index})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            updateSummary();
         }
 
-        // Event listeners
-        minusButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const input = button.nextElementSibling;
-                updateQuantity(input, -1);
-            });
-        });
+        function updateQuantity(index, change) {
+            const newQuantity = cart[index].quantity + change;
+            if (newQuantity > 0) {
+                cart[index].quantity = newQuantity;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartDisplay();
+            }
+        }
 
-        plusButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const input = button.previousElementSibling;
-                updateQuantity(input, 1);
-            });
-        });
+        function removeItem(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+        }
 
-        quantityInputs.forEach(input => {
-            input.addEventListener('change', () => {
-                let value = parseInt(input.value);
-                if (value < 1) input.value = 1;
-                if (value > 10) input.value = 10;
-                updateCart();
-            });
-        });
+        function updateSummary() {
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            const deliveryFee = subtotal > 0 ? 40 : 0;
+            const tax = subtotal * 0.05;
+            const total = subtotal + deliveryFee + tax;
 
-        removeButtons.forEach(button => {
-            button.addEventListener('click', () => removeItem(button));
-        });
+            document.getElementById('subtotal').textContent = `₹${subtotal}`;
+            document.getElementById('delivery-fee').textContent = `₹${deliveryFee}`;
+            document.getElementById('tax').textContent = `₹${tax.toFixed(2)}`;
+            document.getElementById('total').textContent = `₹${(total).toFixed(2)}`;
+        }
 
-        // Initial cart update
-        updateCart();
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            window.location.href = 'checkout.html';
+        }
     </script>
 </body>
-</html> 
+</html>
