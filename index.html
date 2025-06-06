@@ -118,9 +118,9 @@
             transform: translateY(-3px);
         }
 
-        /* Products Section */
-        .products {
-            padding: 5rem 5%;
+        /* Categories Section */
+        .categories {
+            padding: 4rem 5%;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -129,6 +129,53 @@
             text-align: center;
             margin-bottom: 3rem;
             color: var(--dark-color);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            position: relative;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .category-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 4rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .products-grid {
@@ -187,6 +234,92 @@
             background-color: #3dbeb6;
         }
 
+        /* Features Section */
+        .features {
+            padding: 4rem 5%;
+            background-color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .feature-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            padding: 4rem 5%;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .newsletter-button {
+            padding: 1rem 2rem;
+            background-color: var(--dark-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .newsletter-button:hover {
+            transform: translateY(-3px);
+        }
+
         /* Cart Notification */
         .cart-notification {
             position: fixed;
@@ -213,9 +346,62 @@
         footer {
             background-color: var(--dark-color);
             color: white;
+            padding: 4rem 5%;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            margin-bottom: 0.5rem;
+            color: #ccc;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+
+        .copyright {
             text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         /* Responsive Design */
@@ -228,8 +414,12 @@
                 font-size: 2.5rem;
             }
 
-            .products {
-                padding: 3rem 5%;
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-button {
+                width: 100%;
             }
         }
     </style>
@@ -256,35 +446,95 @@
         </div>
     </section>
 
+    <section class="categories">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Clothing">
+                <div class="category-overlay">Clothing</div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Accessories">
+                <div class="category-overlay">Accessories</div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Footwear">
+                <div class="category-overlay">Footwear</div>
+            </div>
+        </div>
+    </section>
+
     <section class="products" id="products">
         <h2 class="section-title">Featured Products</h2>
         <div class="products-grid">
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Stylish T-Shirt" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Stylish T-Shirt</h3>
-                    <p class="product-price">₹499</p>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
+                <a href="product-details.html" style="text-decoration: none; color: inherit;">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Stylish T-Shirt" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Stylish T-Shirt</h3>
+                        <p class="product-price">₹499</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </a>
             </div>
 
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Comfy Hoodie" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Comfy Hoodie</h3>
-                    <p class="product-price">₹899</p>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
+                <a href="product-details.html" style="text-decoration: none; color: inherit;">
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Comfy Hoodie" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Comfy Hoodie</h3>
+                        <p class="product-price">₹899</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </a>
             </div>
 
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Cool Cap" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Cool Cap</h3>
-                    <p class="product-price">₹299</p>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
+                <a href="product-details.html" style="text-decoration: none; color: inherit;">
+                    <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Cool Cap" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Cool Cap</h3>
+                        <p class="product-price">₹299</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </a>
             </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-truck feature-icon"></i>
+                <h3 class="feature-title">Free Shipping</h3>
+                <p class="feature-description">On orders above ₹999</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-undo feature-icon"></i>
+                <h3 class="feature-title">Easy Returns</h3>
+                <p class="feature-description">7 days return policy</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-alt feature-icon"></i>
+                <h3 class="feature-title">Secure Payment</h3>
+                <p class="feature-description">100% secure checkout</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-headset feature-icon"></i>
+                <h3 class="feature-title">24/7 Support</h3>
+                <p class="feature-description">Dedicated support team</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get updates on new products and special offers!</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                <button type="submit" class="newsletter-button">Subscribe</button>
+            </form>
         </div>
     </section>
 
@@ -293,7 +543,34 @@
     </div>
 
     <footer>
-        <p>© 2025 BIHAR BITES. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>BIHAR BITES is your one-stop shop for quality products at affordable prices.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="#home">Home</a></p>
+                <p><a href="#products">Products</a></p>
+                <p><a href="contact.html">Contact</a></p>
+                <p><a href="#login">Login</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Purnia, Bihar, India</p>
+                <p><i class="fas fa-phone"></i> +91 8603637243</p>
+                <p><i class="fas fa-envelope"></i> ayushpurnia919@gmail.com</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 BIHAR BITES. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
@@ -302,7 +579,8 @@
         const cartNotification = document.getElementById('cartNotification');
 
         addToCartButtons.forEach(button => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent the link from navigating
                 cartNotification.style.display = 'block';
                 setTimeout(() => {
                     cartNotification.style.display = 'none';
@@ -318,6 +596,13 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for subscribing to our newsletter!');
+            this.reset();
         });
     </script>
 </body>
