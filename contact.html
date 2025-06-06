@@ -61,10 +61,22 @@
             color: var(--dark-color);
             font-weight: 500;
             transition: color 0.3s ease;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: var(--primary-color);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* Contact Section */
@@ -259,25 +271,25 @@
             <h2>Get in Touch</h2>
             <div class="info-item">
                 <i class="fas fa-map-marker-alt"></i>
-                <p>123 Bihar Street, Patna, Bihar, India</p>
+                <p>Purnia, Bihar, India</p>
             </div>
             <div class="info-item">
                 <i class="fas fa-phone"></i>
-                <p>+91 123 456 7890</p>
+                <p>+91 8603637243</p>
             </div>
             <div class="info-item">
                 <i class="fas fa-envelope"></i>
-                <p>info@biharbites.com</p>
+                <p>ayushpurnia919@gmail.com</p>
             </div>
             <div class="info-item">
                 <i class="fas fa-clock"></i>
                 <p>Mon - Sat: 9:00 AM - 8:00 PM</p>
             </div>
             <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/ayushhsingh_919" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:ayushpurnia919@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="tel:+918603637243"><i class="fas fa-phone"></i></a>
+                <a href="https://wa.me/918603637243" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
 
@@ -307,7 +319,7 @@
 
     <section class="map-section">
         <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115132.874387!2d85.078538!3d25.5940947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f29937c52d4f99%3A0x753850b1498cf135!2sPatna%2C%20Bihar!5e0!3m2!1sen!2sin!4v1647881234567!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115132.874387!2d87.4748!3d25.7777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f2a9f3b0d1c8f1%3A0x8b1c3f3f3f3f3f3f!2sPurnia%2C%20Bihar!5e0!3m2!1sen!2sin!4v1647881234567!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
