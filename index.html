@@ -61,10 +61,22 @@
             color: var(--dark-color);
             font-weight: 500;
             transition: color 0.3s ease;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: var(--primary-color);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* Hero Section */
@@ -227,7 +239,7 @@
         <div class="nav-container">
             <a href="#" class="logo">BIHAR BITES</a>
             <div class="nav-links">
-               <a href="#home">Home</a>
+                <a href="#home">Home</a>
                 <a href="#products">Products</a>
                 <a href="#cart">Cart</a>
                 <a href="contact.html">Contact</a>
